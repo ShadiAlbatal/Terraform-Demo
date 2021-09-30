@@ -1,5 +1,13 @@
+
+provider "azurerm" {
+  features {
+    
+  }
+  
+}
+
 resource "azurerm_resource_group" "RG-Terraform" {
-  name     = "terraform-resource-group"
+  name     = "terraform-resource-group-my-my"
   location = "West Europe"
 }
 
@@ -15,7 +23,7 @@ resource "azurerm_app_service_plan" "ASP-TerraForm" {
 }
 
 resource "azurerm_app_service" "AS-Terraform" {
-  name                = "app-service-terraform"
+  name                = "app-service-terraform-my-my"
   location            = azurerm_resource_group.RG-Terraform.location
   resource_group_name = azurerm_resource_group.RG-Terraform.name
   app_service_plan_id = azurerm_app_service_plan.ASP-TerraForm.id
@@ -37,7 +45,7 @@ resource "azurerm_app_service" "AS-Terraform" {
 }
 
 resource "azurerm_sql_server" "test" {
-  name                         = "terraform-sqlserver"
+  name                         = "terraform-sqlserver-my-my"
   resource_group_name          = azurerm_resource_group.RG-Terraform.name
   location                     = azurerm_resource_group.RG-Terraform.location
   version                      = "12.0"
@@ -46,7 +54,7 @@ resource "azurerm_sql_server" "test" {
 }
 
 resource "azurerm_sql_database" "test" {
-  name                = "terraform-sqldatabase"
+  name                = "terraform-sqldatabase-my-my"
   resource_group_name = azurerm_resource_group.RG-Terraform.name
   location            = azurerm_resource_group.RG-Terraform.location
   server_name         = azurerm_sql_server.test.name
